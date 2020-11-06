@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30611.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialCommunicationTerminalSystem", "SerialCommunicationTerminalSystem\SerialCommunicationTerminalSystem.csproj", "{F960F280-B0AC-4F08-B117-C636120E4328}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F960F280-B0AC-4F08-B117-C636120E4328}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F960F280-B0AC-4F08-B117-C636120E4328}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F960F280-B0AC-4F08-B117-C636120E4328}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F960F280-B0AC-4F08-B117-C636120E4328}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D65F202-EA50-434B-843C-D4443E587BFA}
+	EndGlobalSection
+EndGlobal
