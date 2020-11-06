@@ -65,7 +65,7 @@ namespace SerialCommunicationTerminalSystem
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             // シリアルポートオープンされている
-            if(serialPort.IsOpen == true)
+            if (serialPort.IsOpen == true)
             {
                 // シリアルポートのクローズ
                 serialPort.Close();
@@ -96,7 +96,7 @@ namespace SerialCommunicationTerminalSystem
         //----------------------------------------------------------------------------------
         private void buttonConnect_Click(object sender, EventArgs e)
         {
-            if(buttonConnect.Text == "接続")
+            if (buttonConnect.Text == "接続")
             {
                 try
                 {
@@ -119,7 +119,7 @@ namespace SerialCommunicationTerminalSystem
 
                     // シリアルポートのオープン
                     serialPort.Open();
-                    
+
 
                     // 「切断」ボタンに切替
                     buttonConnect.Text = "切断";
@@ -187,10 +187,10 @@ namespace SerialCommunicationTerminalSystem
         //----------------------------------------------------------------------------------
         private void comboBoxLineFeedCode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxLineFeedCode.Text == "CR（Mac系）")            lineFeedCode = "\r";
-            else if (comboBoxLineFeedCode.Text == "LF（Unix系）")      lineFeedCode = "\n";
+            if (comboBoxLineFeedCode.Text == "CR（Mac系）") lineFeedCode = "\r";
+            else if (comboBoxLineFeedCode.Text == "LF（Unix系）") lineFeedCode = "\n";
             else if (comboBoxLineFeedCode.Text == "CRLF（Windows系）") lineFeedCode = "\r\n";
-            else if (comboBoxLineFeedCode.Text == "なし")              lineFeedCode = "";
+            else if (comboBoxLineFeedCode.Text == "なし") lineFeedCode = "";
         }
 
         //----------------------------------------------------------------------------------
