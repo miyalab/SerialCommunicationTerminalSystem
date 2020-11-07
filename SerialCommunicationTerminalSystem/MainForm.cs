@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Serial Communication Terminal System(SCTS)
  * 
  * Copyright (c) 2020 K.Miyauchi
