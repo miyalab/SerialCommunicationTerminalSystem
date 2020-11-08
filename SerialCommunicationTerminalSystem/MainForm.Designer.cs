@@ -42,12 +42,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBoxRead = new System.Windows.Forms.TextBox();
             this.textBoxTrans = new System.Windows.Forms.TextBox();
             this.buttonTrans = new System.Windows.Forms.Button();
             this.serialPort = new System.IO.Ports.SerialPort(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.comboBoxLineFeedCode = new System.Windows.Forms.ComboBox();
+            this.textBoxRead = new System.Windows.Forms.TextBox();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -181,15 +181,6 @@
             this.label4.TabIndex = 999;
             this.label4.Text = "パリティビット";
             // 
-            // textBoxRead
-            // 
-            this.textBoxRead.Location = new System.Drawing.Point(12, 211);
-            this.textBoxRead.Multiline = true;
-            this.textBoxRead.Name = "textBoxRead";
-            this.textBoxRead.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxRead.Size = new System.Drawing.Size(338, 322);
-            this.textBoxRead.TabIndex = 12;
-            // 
             // textBoxTrans
             // 
             this.textBoxTrans.Enabled = false;
@@ -238,16 +229,24 @@
             this.comboBoxLineFeedCode.TabIndex = 8;
             this.comboBoxLineFeedCode.SelectedIndexChanged += new System.EventHandler(this.comboBoxLineFeedCode_SelectedIndexChanged);
             // 
+            // textBoxRead
+            // 
+            this.textBoxRead.Location = new System.Drawing.Point(12, 211);
+            this.textBoxRead.Multiline = true;
+            this.textBoxRead.Name = "textBoxRead";
+            this.textBoxRead.Size = new System.Drawing.Size(338, 322);
+            this.textBoxRead.TabIndex = 1000;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(362, 570);
+            this.Controls.Add(this.textBoxRead);
             this.Controls.Add(this.comboBoxLineFeedCode);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.buttonTrans);
             this.Controls.Add(this.textBoxTrans);
-            this.Controls.Add(this.textBoxRead);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -289,12 +288,12 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBoxRead;
         private System.Windows.Forms.TextBox textBoxTrans;
         private System.Windows.Forms.Button buttonTrans;
-        private System.IO.Ports.SerialPort serialPort;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBoxLineFeedCode;
+        private System.Windows.Forms.TextBox textBoxRead;
+        public System.IO.Ports.SerialPort serialPort;
     }
 }
 

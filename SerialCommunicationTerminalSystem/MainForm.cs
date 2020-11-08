@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Serial Communication Terminal System(SCTS)
  * 
  * Copyright (c) 2020 K.Miyauchi
@@ -36,6 +36,10 @@ namespace SerialCommunicationTerminalSystem
         // メンバ変数
         private string lineFeedCode = "\r\n";       // 改行コード（送信）
 
+        // delegate関連
+        public delegate void AddDataDelegate(string myString);
+        public AddDataDelegate myDelegate;
+
         //----------------------------------------------------------------------------------
         // MainForm コンストラクタ
         //----------------------------------------------------------------------------------
@@ -55,6 +59,9 @@ namespace SerialCommunicationTerminalSystem
             comboBoxParity.SelectedIndex = 0;
             comboBoxLineFeedCode.SelectedIndex = 2;
 
+            // シリアルポート用設定 テキストボックスへのアクセス許可
+            this.myDelegate = new AddDataDelegate(addDataMethod);
+
             // デバイスリスト更新
             deviceList_Update();
         }
@@ -65,7 +72,7 @@ namespace SerialCommunicationTerminalSystem
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             // シリアルポートオープンされている
-            if (serialPort.IsOpen == true)
+            if(serialPort.IsOpen == true)
             {
                 // シリアルポートのクローズ
                 serialPort.Close();
@@ -96,7 +103,7 @@ namespace SerialCommunicationTerminalSystem
         //----------------------------------------------------------------------------------
         private void buttonConnect_Click(object sender, EventArgs e)
         {
-            if (buttonConnect.Text == "接続")
+            if(buttonConnect.Text == "接続")
             {
                 try
                 {
@@ -119,7 +126,6 @@ namespace SerialCommunicationTerminalSystem
 
                     // シリアルポートのオープン
                     serialPort.Open();
-
 
                     // 「切断」ボタンに切替
                     buttonConnect.Text = "切断";
@@ -187,18 +193,30 @@ namespace SerialCommunicationTerminalSystem
         //----------------------------------------------------------------------------------
         private void comboBoxLineFeedCode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBoxLineFeedCode.Text == "CR（Mac系）") lineFeedCode = "\r";
-            else if (comboBoxLineFeedCode.Text == "LF（Unix系）") lineFeedCode = "\n";
+            if (comboBoxLineFeedCode.Text == "CR（Mac系）")            lineFeedCode = "\r";
+            else if (comboBoxLineFeedCode.Text == "LF（Unix系）")      lineFeedCode = "\n";
             else if (comboBoxLineFeedCode.Text == "CRLF（Windows系）") lineFeedCode = "\r\n";
-            else if (comboBoxLineFeedCode.Text == "なし") lineFeedCode = "";
+            else if (comboBoxLineFeedCode.Text == "なし")              lineFeedCode = "";
         }
-
+        
         //----------------------------------------------------------------------------------
         // シリアルポート データ受信時処理
         //----------------------------------------------------------------------------------
         private void serialPort_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            textBoxRead.AppendText(serialPort.ReadExisting());
+            SerialPort serialbuff = (SerialPort)sender;
+            textBoxRead.Invoke(this.myDelegate, new Object[] { serialbuff.ReadExisting() });
+        }
+
+        //**********************************************************************************
+        // 以下、自作関数
+        //**********************************************************************************
+        //----------------------------------------------------------------------------------
+        // シリアルポート受信イベント用メソッド
+        //----------------------------------------------------------------------------------
+        public void addDataMethod(string myString)
+        {
+            textBoxRead.AppendText(myString);
         }
 
         //**********************************************************************************
@@ -275,6 +293,7 @@ namespace SerialCommunicationTerminalSystem
             textBoxBaudrate.Enabled = true;
             comboBoxStopbit.Enabled = true;
             comboBoxDatabit.Enabled = true;
+            comboBoxParity.Enabled = true;
 
             // シリアルポート送信関係
             textBoxTrans.Enabled = false;
