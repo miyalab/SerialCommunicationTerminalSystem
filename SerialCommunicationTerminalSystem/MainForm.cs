@@ -228,15 +228,15 @@ namespace SerialCommunicationTerminalSystem
         private static IEnumerable<string> GetSerialDeviceNames()
         {
             var pnpEntity = new ManagementClass("Win32_PnPEntity");
-            var comRegex = new Regex(@"\(COM[1-9][0-9]?[0-9]?\)");                  // デバイス名に"(COM3)"などが入ってるものを探す
+            var comRegex = new Regex(@"\(COM[1-9][0-9]?[0-9]?\)");                  // (COM**)を探索
 
             return pnpEntity
-                .GetInstances()                                                     // 一覧を取得
+                .GetInstances()                                                     // 一覧取得
                 .Cast<ManagementObject>()
                 .Select(managementObj => managementObj.GetPropertyValue("Name"))    // 名前拾ってくる
-                .Where(nameObj => nameObj != null)                                  // プロパティ値が拾えないものはnullになっているので弾く
-                .Select(nameObj => nameObj.ToString())                              // 文字列に直し、
-                .Where(name => comRegex.IsMatch(name));                             // 正規表現で最後のフィルタリング
+                .Where(nameObj => nameObj != null)                                  
+                .Select(nameObj => nameObj.ToString())                              
+                .Where(name => comRegex.IsMatch(name));                             // 正規表現でフィルタリング
         }
 
         //----------------------------------------------------------------------------------
